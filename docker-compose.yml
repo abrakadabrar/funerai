@@ -48,16 +48,16 @@ services:
       - console
       - storage
 
-#  node:
-#    image: node:16-alpine
-#    volumes:
-#      - ./:/app
-#    working_dir: /app
+  node:
+    image: node:16-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
 
-#  mailcatcher:
-#    image: schickling/mailcatcher:latest
-#    ports:
-#      - 1080:1080
+  mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - 1080:1080
 
 #  db:
 #    image: mysql:8
