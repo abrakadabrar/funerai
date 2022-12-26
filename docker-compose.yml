@@ -48,20 +48,33 @@ services:
       - console
       - storage
 
-  node:
-    image: node:16-alpine
-    volumes:
-      - ./:/app
-    working_dir: /app
+#  node:
+#    image: node:16-alpine
+#    volumes:
+#      - ./:/app
+#    working_dir: /app
 
-  mailcatcher:
-    image: schickling/mailcatcher:latest
-    ports:
-      - 1080:1080
+#  mailcatcher:
+#    image: schickling/mailcatcher:latest
+#    ports:
+#      - 1080:1080
 
+#  db:
+#    image: mysql:8
+#    volumes:
+#      - /var/lib/mysql
+#      - ./docker/mysql/config.cnf:/etc/mysql/conf.d/config.cnf
+#    ports:
+#      - 3306:3306
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: yii2-starter-kit
+#      MYSQL_USER: ysk_dbu
+#      MYSQL_PASSWORD: ysk_pass
   db:
-    image: mysql:8
+    image: mariadb:10.4.6
     volumes:
+      - ./docker/mysql/share:/root/share
       - /var/lib/mysql
       - ./docker/mysql/config.cnf:/etc/mysql/conf.d/config.cnf
     ports:
@@ -74,7 +87,7 @@ services:
 
 networks:
   default:
-    name: ugoos_web
+    name: funerai_web
     driver: bridge
     ipam:
       config:
