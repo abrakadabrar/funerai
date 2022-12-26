@@ -22,6 +22,9 @@ $config = [
         ],
         'request' => [
             'enableCookieValidation' => false,
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'user' => [
             'class' => yii\web\User::class,
