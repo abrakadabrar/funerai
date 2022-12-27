@@ -13,12 +13,6 @@ use yii\web\JsExpression;
  */
 ?>
 
-<pre>
-    <?php
-    var_dump($model);
-    ?>
-</pre>
-
 <div class="product-form">
     <?php $form = ActiveForm::begin(); ?>
         <div class="card">
