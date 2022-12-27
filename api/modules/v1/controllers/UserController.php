@@ -10,11 +10,30 @@ use yii\rest\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
-/**
- * @author Eugene Terentev <eugene@terentev.net>
- */
 class UserController extends Controller
 {
+    /**
+     * @SWG\Post(path="/user/register",
+     *     tags={"user"},
+     *     summary="Registers user",
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "Status and token response",
+     *         @SWG\Schema(ref = "#/definitions/User")
+     *     ),
+     *     @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="User data used to create account.",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(property="username", type="string", example="some_username"),
+     *              @SWG\Property(property="email", type="string", example="email@example.com"),
+     *              @SWG\Property(property="password", type="string", example="some_strong_password")
+     *          ),
+     *     )
+     * )
+     */
     public function actionRegister() {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -59,6 +78,27 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @SWG\Post(path="/user/login",
+     *     tags={"user"},
+     *     summary="Logins user",
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "Status and token response",
+     *         @SWG\Schema(ref = "#/definitions/User")
+     *     ),
+     *     @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="User data used to login into account.",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(property="identity", type="string", example="some_username", description="email or login."),
+     *              @SWG\Property(property="password", type="string", example="some_strong_password"),
+     *          ),
+     *     )
+     * )
+     */
     public function actionLogin() {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $model = new LoginForm();

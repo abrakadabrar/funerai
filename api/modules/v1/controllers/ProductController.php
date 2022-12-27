@@ -8,6 +8,7 @@ use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\HttpHeaderAuth;
 use yii\filters\auth\QueryParamAuth;
+
 class ProductController extends \yii\rest\Controller {
 
     /**
@@ -29,6 +30,28 @@ class ProductController extends \yii\rest\Controller {
 
         return $behaviors;
     }
+
+
+    /**
+     * @SWG\Post(path="/product/like/{product_id}",
+     *     tags={"product"},
+     *     summary="Like or dislike product by user",
+     *     security={
+     *          {"Bearer": {}}
+     *     },
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "Succes and like status",
+     *         @SWG\Schema(ref = "#/definitions/ProductLike")
+     *     ),
+     *     @SWG\Parameter(
+     *          name="product_id",
+     *          in="path",
+     *          type="integer",
+     *          required=true
+     *     )
+     * )
+     */
 
     public function actionLike($product_id) {
         $model = ProductLike::find()->where([
@@ -52,6 +75,26 @@ class ProductController extends \yii\rest\Controller {
         }
     }
 
+    /**
+     * @SWG\Post(path="/product/likes/{product_id}",
+     *     tags={"product"},
+     *     summary="Show product likes count",
+     *     security={
+     *          {"Bearer": {}}
+     *     },
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "Count of likes",
+     *         @SWG\Schema(ref = "#/definitions/ProductLike")
+     *     ),
+     *     @SWG\Parameter(
+     *          name="product_id",
+     *          in="path",
+     *          type="integer",
+     *          required=true
+     *     )
+     * )
+     */
     public function actionLikes($product_id) {
         $models = ProductLike::find($product_id)->all();
         return [
