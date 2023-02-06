@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'name' => 'Yii2 Starter Kit',
+    'name' => 'FunnerAI',
     'vendorPath' => __DIR__ . '/../../vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
@@ -12,7 +12,7 @@ $config = [
     ],
     'components' => [
         'authManager' => [
-            'class' => yii\rbac\DbManager::class,
+            'class' => \yii\rbac\DbManager::class,
             'itemTable' => '{{%rbac_auth_item}}',
             'itemChildTable' => '{{%rbac_auth_item_child}}',
             'assignmentTable' => '{{%rbac_auth_assignment}}',

@@ -17,11 +17,13 @@ use yii\helpers\Html;
     <title><?php echo Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?php echo Html::csrfMetaTags() ?>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
     <?php echo $content ?>
 <?php $this->endBody() ?>
+<script src="/js/app.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -10,6 +10,7 @@ namespace frontend\assets;
 use common\assets\Html5shiv;
 use rmrevin\yii\fontawesome\NpmFreeAssetBundle;
 use yii\bootstrap4\BootstrapAsset;
+use yii\bootstrap4\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 use yii\web\YiiAsset;
 
@@ -43,6 +44,7 @@ class FrontendAsset extends AssetBundle
     public $depends = [
         YiiAsset::class,
         BootstrapAsset::class,
+        BootstrapPluginAsset::class,
         Html5shiv::class,
         NpmFreeAssetBundle::class,
     ];

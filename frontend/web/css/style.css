@@ -1,0 +1,221 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/font/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+html,
+body {
+    height: 100%;
+    background-color: #28282E;
+    color: #FFFFFF;
+    font-family: 'Montserrat';
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: auto;
+    background-color: #28282E;
+    color: #C5CADF;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+
+.footer-item {
+    padding: 20px 10px;
+}
+a {
+    transition: color 0.5s;
+    color: #C5CADF;
+}
+a:hover {
+    color: white;
+}
+
+
+#main-content-wrapper {
+    background-size: contain!important;
+    background: url("/img/content-bg.png") no-repeat center bottom;
+}
+
+#top-banner {
+    margin-bottom: 140px;
+    position: relative;
+}
+.top-banner-img {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+#top-banner-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#top-banner-container {
+    position: relative;
+    height: 100%;
+}
+#roadmap-table {
+    border: none;
+    font-size: 20px;
+}
+
+#roadmap-table td {
+    vertical-align: top;
+    padding-bottom: 40px;
+}
+#roadmap-table td.marker {
+    background: url("/img/roadmap-line.png");
+    background-repeat: repeat-y;
+    background-position: center;
+}
+#roadmap-table td.marker img {
+    width: 30px;
+    height: 30px;
+}
+#roadmap-table td.date {
+    width: 130px;
+    padding: 0 20px 0;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.9;
+}
+#roadmap-table td.text {
+    line-height: 30px;
+}
+
+header > nav.bg-dark {
+    background: transparent!important;
+}
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+a.navbar-brand {
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+    background: rgba(63, 63, 63, 0.8);
+    font-size: 22px;
+}
+.navbar-dark .nav-item {
+    margin: 5px;
+}
+
+#download-wrap {
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 100px;
+    width: 460px;
+    text-align: right;
+}
+
+.gray-btn {
+    color: white;
+    background: rgba(63, 63, 63, 0.8);
+    padding: 0.5rem 1rem;
+}
+#btn-download {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 22px;
+}
+#top-banner-header {
+    font-size: 44px;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 1);
+}
+.modal-header {
+    display: block;
+}
