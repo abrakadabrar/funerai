@@ -282,6 +282,17 @@ a.navbar-brand {
     padding-bottom: 0;
 }
 
+#registerModal .modal-header {
+    border-bottom: none;
+}
+#registerModal .modal-footer {
+    border-top: none;
+}
+#registerModal .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .form-control:focus {
     border-radius: 0;
     background-color: #202023;
@@ -329,4 +340,41 @@ a.white-link {
     object-fit: cover;
     background: transparent;
     max-height: 100vh;
+}
+
+#login-form-submit {
+    flex-basis: 100%;
+    text-align: center;
+    padding: 0.6rem 0.75rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.btn.btn-primary.lighter {
+    background: #88C6FF;
+    color: black;
+    border-color: #88C6FF;
+}
+/*
+background: #88C6FF;
+
+ */
+
+.checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: '';
+}
+/*88c6ff*/
+.checkmark:hover:after {
+    background: red 50% / 50% 50% no-repeat;
+}
+input:checked ~ .checkmark:after {
+    display: block;
 }

@@ -12,24 +12,21 @@ $this->title = Yii::t('frontend', 'Sign up');
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'signup-form']); ?>
-<div class="signup mt-5">
-    <div class="row justify-content-center">
-        <div class="col-sm-4">
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h1 class="text-muted text-center"><?php echo Html::encode($this->title) ?></h1>
-                    <?php echo $form->errorSummary($model) ?>
-                    <?php echo $form->field($model, 'username') ?>
-                    <?php echo $form->field($model, 'email') ?>
-                    <?php echo $form->field($model, 'password')->passwordInput() ?>
-                    <?php echo $form->field($model, 'password_confirm')->passwordInput() ?>
+<?php echo $form->errorSummary($model) ?>
 
-                    <div class="form-group">
-                        <?php echo Html::submitButton(Yii::t('frontend', 'Sign up'), ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'signup-button']) ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php echo $form->field($model, 'username')->textInput(['class' => ['overed-input form-control']])->label('Username', [
+    'class' => ['over-label']
+]); ?>
+<?php echo $form->field($model, 'email')->label(false) ?>
+<?php echo $form->field($model, 'password')->passwordInput()->label(false) ?>
+<?php echo $form->field($model, 'password_confirm')->passwordInput()->label(false) ?>
+<?php echo $form->field($model, 'privacy_accept')->checkbox()
+    ->label(
+        "I agree with the <a class='text-sm text-bold white-link' href='#'>privacy policy</a><span class='checkmark'></span>
+"
+    )
+
+// todo; add to label - privacy policy?>
+
+
 <?php ActiveForm::end(); ?>

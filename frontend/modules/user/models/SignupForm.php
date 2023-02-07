@@ -34,13 +34,15 @@ class SignupForm extends Model
      */
     public $password_confirm;
 
+    public $privacy_accept;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['username', 'email', 'password', 'password_confirm'], 'required'],
+            [['username', 'email', 'password', 'password_confirm', 'privacy_accepted'], 'required'],
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'unique',
                 'targetClass' => '\common\models\User',
@@ -69,7 +71,8 @@ class SignupForm extends Model
             'username' => Yii::t('frontend', 'Username'),
             'email' => Yii::t('frontend', 'E-mail'),
             'password' => Yii::t('frontend', 'Password'),
-            'password_confirm' => Yii::t('frontend', 'Confirm Password')
+            'password_confirm' => Yii::t('frontend', 'Confirm Password'),
+            'privacy_accept' => Yii::t('frontend', 'I agree with the')
         ];
     }
 

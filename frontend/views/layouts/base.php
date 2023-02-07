@@ -139,4 +139,39 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="text-bold" id="registerModalLabel">Register</h2>
+                    <p>Already registered?
+                        <?php echo Html::a(Yii::t('frontend', 'Log in'), ['signup'],
+                            ['class' => ['text-sm text-bold white-link']]) ?>
+                    </p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    echo $this->render('user/signup', [
+                        'model' => new \frontend\modules\user\models\SignupForm()
+                    ]);
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button id="login-form-submit" type="button" class="btn btn-primary">Register</button>
+                    <br>
+                    <?php echo Html::a(Yii::t('frontend', 'Forgot your password?'),
+                        ['sign-in/request-password-reset'],
+                        ['class' => ['text-bold forgot-password white-link']])
+                    ?>
+                    <?php if (Yii::$app->getModule('user')->shouldBeActivated) : ?>
+                        <?php echo Html::a(Yii::t('frontend', 'Resend my activation email'), ['sign-in/resend-email']) ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php $this->endContent() ?>
