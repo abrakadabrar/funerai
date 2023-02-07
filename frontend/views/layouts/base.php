@@ -7,6 +7,7 @@
 use frontend\modules\user\models\LoginForm;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\Html;
 
 $this->beginContent('@frontend/views/layouts/_clear.php')
 ?>
@@ -21,7 +22,16 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
     <?php echo Nav::widget([
         'options' => ['class' => ['navbar-nav', 'justify-content-end', 'ml-auto']],
         'items' => [
-            ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/user/sign-in/signup'], 'visible'=>Yii::$app->user->isGuest],
+            [
+                'label' => Yii::t('frontend', 'Signup'),
+                'url' => ['/user/sign-in/signup'],
+                'visible'=>Yii::$app->user->isGuest,
+                'linkOptions' => [
+                    "data-toggle"=>"modal",
+                    "data-target"=>"#registerModal",
+                    'class' => "gray-btn"
+                ],
+            ],
             [
                 'label' => Yii::t('frontend', 'Login'),
 //                'url' => ['/user/sign-in/login'],
@@ -29,7 +39,8 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                 'visible'=>Yii::$app->user->isGuest,
                 'linkOptions' => [
                     "data-toggle"=>"modal",
-                    "data-target"=>"#loginModal"
+                    "data-target"=>"#loginModal",
+                    'class' => "gray-btn"
                 ],
             ],
             [
@@ -39,12 +50,17 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     [
                         'label' => Yii::t('frontend', 'Backend'),
                         'url' => Yii::getAlias('@backendUrl'),
-                        'visible'=>Yii::$app->user->can('manager')
+                        'visible'=>Yii::$app->user->can('manager'),
                     ],
                     [
                         'label' => Yii::t('frontend', 'Logout'),
                         'url' => ['/user/sign-in/logout'],
-                        'linkOptions' => ['data-method' => 'post']
+                        'linkOptions' => [
+                            'data-method' => 'post',
+                            "data-toggle"=>"modal",
+                            "data-target"=>"#loginModal",
+                            'class' => "gray-btn"
+                        ],
                     ]
                 ]
             ]
@@ -56,6 +72,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 <main id="main-content-wrapper" class="flex-shrink-0" role="main">
     <div id="top-banner">
         <img class="top-banner-img" src="/img/top-banner.png"/>
+        <video id="top-banner-video" src="/video/FA_Cinematic_01_compr.mp4" autoplay playsinline loop muted></video>
         <div id="top-banner-inner" >
             <div id="top-banner-container" class="container">
                 <div id="download-wrap">
@@ -91,23 +108,33 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Log in</h5>
+                    <h2 class="text-bold" id="loginModalLabel">Log in</h2>
                     <p>Log in to download the app</p>
-                    <p>Not a member yet? <a class="register-now" href="#">Register now</a></p>
+                    <p>Not a member yet?
+                        <?php echo Html::a(Yii::t('frontend', 'Register now'), ['signup'],
+                            ['class' => ['text-sm text-bold white-link']]) ?>
+                    </p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <?php
-                    $this->render('@frontend/modules/user/views/sign-in/login', [
+                    echo $this->render('user/login', [
                         'model' => new LoginForm()
                     ]);
                     ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Login</button>
-                    <a class="forgot-password" href="#">Forgot your password?</a>
+                    <button id="login-form-submit" type="button" class="btn btn-primary">Login</button>
+                    <br>
+                    <?php echo Html::a(Yii::t('frontend', 'Forgot your password?'),
+                        ['sign-in/request-password-reset'],
+                        ['class' => ['text-bold forgot-password white-link']])
+                    ?>
+                    <?php if (Yii::$app->getModule('user')->shouldBeActivated) : ?>
+                        <?php echo Html::a(Yii::t('frontend', 'Resend my activation email'), ['sign-in/resend-email']) ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

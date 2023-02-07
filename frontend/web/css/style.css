@@ -102,11 +102,11 @@ a.desc:after {
     padding: 20px 10px;
 }
 a {
-    transition: color 0.5s;
+    transition: color 0.2s;
     color: #C5CADF;
 }
 a:hover {
-    color: white;
+    color: #88C6FF;
 }
 
 
@@ -124,6 +124,7 @@ a:hover {
     position: relative;
     width: 100%;
     height: auto;
+    max-height: 100vh;
 }
 #top-banner-inner {
     position: absolute;
@@ -199,10 +200,15 @@ a.navbar-brand {
     text-align: right;
 }
 
-.gray-btn {
+.gray-btn, .navbar-dark .navbar-nav .nav-link.gray-btn {
     color: white;
     background: rgba(63, 63, 63, 0.8);
     padding: 0.5rem 1rem;
+    transition: color,background-color 0.2s;
+}
+.gray-btn:hover, .navbar-dark .navbar-nav .nav-link.gray-btn:hover {
+    background: #88C6FF;
+    color: black;
 }
 #btn-download {
     display: inline-block;
@@ -213,9 +219,114 @@ a.navbar-brand {
     font-size: 44px;
 }
 
-.modal-content {
-    background-color: rgba(0, 0, 0, 1);
+
+
+
+.btn {
+    border-radius: 0;
 }
+.btn.btn-primary {
+    background: #88C6FF;
+    color: black;
+    border-color: #88C6FF;
+}
+.btn.btn-primary:hover {
+    color: white;
+    background: rgba(63, 63, 63, 0.8);
+    border-color: rgba(63, 63, 63, 0.8);
+}
+
+
 .modal-header {
     display: block;
+    padding: 2rem;
+}
+.modal-header button.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    color: white;
+    /* font-size: 2rem; */
+}
+.modal-header h2 {
+    margin-bottom: 25px;
+}
+.modal-header p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.modal-body {
+    padding: 2rem;
+}
+.modal-footer {
+    padding: 2rem;
+}
+.modal-content {
+    background-color: #202023;
+    border-radius: 0;
+}
+.form-control {
+    border-radius: 0;
+    background-color: #202023;
+    color: white;
+}
+
+#loginModal .modal-header {
+    border-bottom: none;
+}
+#loginModal .modal-footer {
+    border-top: none;
+}
+#loginModal .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.form-control:focus {
+    border-radius: 0;
+    background-color: #202023;
+    color: white;
+}
+
+.forgot-password {
+    flex-basis: 100%;
+    text-align: right;
+}
+#login-form-submit {
+    flex-basis: 100%;
+    text-align: center;
+    padding: 0.6rem 0.75rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+a.white-link {
+    color: white;
+}
+
+
+.overed-input {
+    margin-top: -24px;
+}
+.over-label {
+    background: #202023;
+    margin-left: 10px;
+    padding: 5px;
+    color: #A9ACB9;
+}
+
+#top-banner-video {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background: transparent;
+    max-height: 100vh;
 }
