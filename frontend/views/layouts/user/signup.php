@@ -8,7 +8,6 @@ use yii\bootstrap4\ActiveForm;
  * @var frontend\modules\user\models\SignupForm $model
  */
 
-$this->title = Yii::t('frontend', 'Sign up');
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'signup-form']); ?>
@@ -22,11 +21,9 @@ $this->title = Yii::t('frontend', 'Sign up');
 <?php echo $form->field($model, 'password_confirm')->passwordInput()->label(false) ?>
 <?php echo $form->field($model, 'privacy_accept')->checkbox()
     ->label(
-        "I agree with the <a class='text-sm text-bold white-link' href='#'>privacy policy</a><span class='checkmark'></span>
-"
+        "I agree with the <a class='text-sm text-bold white-link' href='#'>privacy policy</a>"
     )
-
-// todo; add to label - privacy policy?>
+?>
 
 
 <?php ActiveForm::end(); ?>

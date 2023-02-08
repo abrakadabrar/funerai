@@ -1,7 +1,8 @@
 <?php
+//schemes={"http","https"},
 /**
  * @SWG\Swagger(
- *     schemes={"http","https"},
+ *     schemes={"https"},
  *     basePath="/",
  *     @SWG\Info(
  *         version="1.0.0",

@@ -5,6 +5,7 @@
  */
 
 use frontend\modules\user\models\LoginForm;
+use frontend\modules\user\models\PasswordResetRequestForm;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\helpers\Html;
@@ -34,8 +35,8 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             ],
             [
                 'label' => Yii::t('frontend', 'Login'),
-//                'url' => ['/user/sign-in/login'],
-                'url' => '#',
+                'url' => ['/user/sign-in/login'],
+//                'url' => '#',
                 'visible'=>Yii::$app->user->isGuest,
                 'linkOptions' => [
                     "data-toggle"=>"modal",
@@ -69,7 +70,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
     <?php NavBar::end(); ?>
 </header>
 
-<main id="main-content-wrapper" class="flex-shrink-0" role="main">
+<main id="main-content-wrapper" class="flex-shrink-0" role="main" data-is-guest="<?=Yii::$app->user->isGuest?>">
     <div id="top-banner">
         <img class="top-banner-img" src="/img/top-banner.png"/>
         <video id="top-banner-video" src="/video/FA_Cinematic_01_compr.mp4" autoplay playsinline loop muted></video>
@@ -111,8 +112,10 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     <h2 class="text-bold" id="loginModalLabel">Log in</h2>
                     <p>Log in to download the app</p>
                     <p>Not a member yet?
-                        <?php echo Html::a(Yii::t('frontend', 'Register now'), ['signup'],
-                            ['class' => ['text-sm text-bold white-link']]) ?>
+                        <?php echo Html::a(Yii::t('frontend', 'Register now'), '#',
+                            [   "id" => "register-in-sigin",
+                                'class' => ['text-sm text-bold white-link']
+                            ]) ?>
                     </p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -126,11 +129,14 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     ?>
                 </div>
                 <div class="modal-footer">
-                    <button id="login-form-submit" type="button" class="btn btn-primary">Login</button>
+                    <button id="login-form-submit" type="button" class="btn btn-primary submit-modal">Login</button>
                     <br>
                     <?php echo Html::a(Yii::t('frontend', 'Forgot your password?'),
                         ['sign-in/request-password-reset'],
-                        ['class' => ['text-bold forgot-password white-link']])
+                        [
+                                'id' => "forgot-in-sign",
+                                'class' => ['text-bold forgot-password white-link']
+                        ])
                     ?>
                     <?php if (Yii::$app->getModule('user')->shouldBeActivated) : ?>
                         <?php echo Html::a(Yii::t('frontend', 'Resend my activation email'), ['sign-in/resend-email']) ?>
@@ -147,7 +153,10 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     <h2 class="text-bold" id="registerModalLabel">Register</h2>
                     <p>Already registered?
                         <?php echo Html::a(Yii::t('frontend', 'Log in'), ['signup'],
-                            ['class' => ['text-sm text-bold white-link']]) ?>
+                            [
+                                "id" => "sigin-in-register",
+                                'class' => ['text-sm text-bold white-link']
+                            ]) ?>
                     </p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -161,15 +170,43 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     ?>
                 </div>
                 <div class="modal-footer">
-                    <button id="login-form-submit" type="button" class="btn btn-primary">Register</button>
+                    <button id="register-form-submit" type="button" class="btn btn-primary submit-modal">Register</button>
                     <br>
                     <?php echo Html::a(Yii::t('frontend', 'Forgot your password?'),
                         ['sign-in/request-password-reset'],
-                        ['class' => ['text-bold forgot-password white-link']])
+                        [
+                            "data-toggle"=>"modal",
+                            "data-target"=>"#loginModal",
+                            'class' => ['text-bold forgot-password white-link']
+                        ])
                     ?>
                     <?php if (Yii::$app->getModule('user')->shouldBeActivated) : ?>
                         <?php echo Html::a(Yii::t('frontend', 'Resend my activation email'), ['sign-in/resend-email']) ?>
                     <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="forgotModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="text-bold" id="forgotModalLabel">Forgot your password</h2>
+                    <p>Enter your username or email address and we will send you a link to reset your password.</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    echo $this->render('user/requestPasswordResetToken', [
+                        'model' => new PasswordResetRequestForm()
+                    ]);
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button id="reset-password-form-submit" type="button" class="btn btn-primary submit-modal">Reset password</button>
                 </div>
             </div>
         </div>
