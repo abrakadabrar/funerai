@@ -29,7 +29,8 @@ class UserController extends Controller
      *          @SWG\Schema(
      *              @SWG\Property(property="username", type="string", example="some_username"),
      *              @SWG\Property(property="email", type="string", example="email@example.com"),
-     *              @SWG\Property(property="password", type="string", example="some_strong_password")
+     *              @SWG\Property(property="password", type="string", example="some_strong_password"),
+     *              @SWG\Property(property="privacy_accept", type="string", example="1")
      *          ),
      *     )
      * )
@@ -46,6 +47,7 @@ class UserController extends Controller
         $model->email = $body['email'];
         $model->password = $body['password'];
         $model->password_confirm = $body['password'];
+        $model->privacy_accept = $body['privacy_accept'];
 
         //            $model->username = $username;
 //            $model->email = $email;

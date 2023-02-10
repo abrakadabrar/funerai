@@ -42,7 +42,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['username', 'email', 'password', 'password_confirm', 'privacy_accepted'], 'required'],
+            [['username', 'email', 'password', 'password_confirm', 'privacy_accept'], 'required'],
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'unique',
                 'targetClass' => '\common\models\User',

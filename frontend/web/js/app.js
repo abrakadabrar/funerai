@@ -30,4 +30,14 @@ jQuery(function ($) {
         $("#forgotModal").modal("show");
         return false;
     });
+
+    $(window).on('load', function (){
+        new Splide( '.splide' , {
+            //perPage: 1,//Math.floor($('#roadmap2-wrapper').width() / 280)
+            //perMove: 1,
+            wheel    : true,
+            autoWidth: true,
+            arrows: false,
+        }).mount();
+    });
 });
