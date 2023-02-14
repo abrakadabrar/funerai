@@ -294,6 +294,13 @@ $logEntries[] = [
                             'options' => ['class' => 'nav-header'],
                         ],
                         [
+                            'label' => Yii::t('backend', 'Map'),
+                            'url' => ['/map/index'],
+                            'icon' => FAS::icon('newspaper', ['class' => ['nav-icon']]),
+                            'active' => (Yii::$app->controller->id == 'map'),
+//                            'visible' => Yii::$app->components["i18n"]["translations"]['*']['class'] === \yii\i18n\DbMessageSource::class,
+                        ],
+                        [
                             'label' => Yii::t('backend', 'Product'),
                             'url' => ['/product/index'],
                             'icon' => FAS::icon('newspaper', ['class' => ['nav-icon']]),

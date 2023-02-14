@@ -18,8 +18,8 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'category_id', 'user_id'], 'integer'],
-            [['sku', 'title', 'description', 'created_at', 'updated_at', 'asset_base_url', 'asset_path'], 'safe'],
+            [['id', 'category_id', 'map_id', 'owner_id'], 'integer'],
+            [['sku', 'title', 'description', 'asset_base_url', 'asset_path'], 'safe'],
             [['price'], 'number'],
         ];
     }
@@ -55,10 +55,9 @@ class ProductSearch extends Product
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             'price' => $this->price,
+            'map_id' => $this->map_id,
+            'owner_id' => $this->owner_id,
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku])

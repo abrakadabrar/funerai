@@ -1,5 +1,8 @@
 <?php
 
+use common\models\Category;
+use common\models\Map;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -7,6 +10,10 @@ use yii\grid\GridView;
  * @var yii\web\View $this
  * @var common\models\ProductSearch $searchModel
  * @var yii\data\ActiveDataProvider $dataProvider
+ */
+
+/**
+ * @var \common\models\Product $model
  */
 
 $this->title = Yii::t('backend', 'Products');
@@ -38,8 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'category_id',
                     [
                         'attribute' => 'category_id',
-                        'value' => function ($model) {
-                            return \common\models\Category::findOne($model->category_id)->title;
+                        'filter' => ArrayHelper::map(Category::find()->all(), 'id', 'title'),
+                        'value' =>  function ($model) {
+                            return $model->category ? $model->category->title : '-';
                         },
                     ],
 
@@ -51,6 +59,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'price',
                     // 'asset_base_url:url',
                     // 'asset_path',
+
+                    // 'map_id',
+                    // 'owner_id',
+
+                    [
+                        'attribute' => 'map_id',
+                        'filter' => ArrayHelper::map(Map::find()->all(), 'id', 'name'),
+                        'value' => function ($model) {
+                            return $model->map ? $model->map->name : '-';
+                        },
+                    ],
+                    [
+                        'attribute' => 'owner_id',
+                        'filter' => ArrayHelper::map(\common\models\User::find()->all(), 'id', 'usernameEmail'),
+                        'value' => function ($model) {
+                            return $model->owner ? $model->owner->usernameEmail : '-';
+                        },
+                    ],
                     
                     ['class' => \common\widgets\ActionColumn::class],
                 ],

@@ -29,8 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'category_id',
-                    'user_id',
+                    [                      // the owner name of the model
+                        'label' => 'Asset',
+                        'value' => $model->owner_id ? $model->owner->email : '-',
+                        'format' => 'raw'
+                    ],
+                    [                      // the owner name of the model
+                        'label' => 'Asset',
+                        'value' => $model->map_id ? $model->map->name : '-',
+                        'format' => 'raw'
+                    ],
+                    [                      // the owner name of the model
+                        'label' => 'Asset',
+                        'value' => $model->category_id ? $model->category->title : '-',
+                        'format' => 'raw'
+                    ],
+//                    'user_id',
                     'sku',
                     'title',
                     'description:html',
@@ -40,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => Html::a($model->asset_base_url . "/" . $model->asset_path,$model->asset_base_url . "/" . $model->asset_path),
                         'format' => 'raw'
                     ],
+
 //                    'asset_base_url:url',
 //                    'asset_path',
                     

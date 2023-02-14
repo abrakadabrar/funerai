@@ -19,6 +19,18 @@ use yii\web\JsExpression;
             <div class="card-body">
                 <?php echo $form->errorSummary($model); ?>
 
+                <?php echo $form->field($model, 'map_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+                    \common\models\Map::find()->all(),
+                    'id',
+                    'name'
+                ), ['prompt' => '']) ?>
+
+                <?php echo $form->field($model, 'owner_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+                    \common\models\User::find()->all(),
+                    'id',
+                    'email'
+                ), ['prompt' => '']) ?>
+
                 <?php echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
                     \common\models\Category::find()->all(),
                     'id',
@@ -58,6 +70,8 @@ use yii\web\JsExpression;
 
 <!--                --><?php //echo $form->field($model, 'asset_base_url')->textInput(['maxlength' => true]) ?>
 <!--                --><?php //echo $form->field($model, 'asset_path')->textInput(['maxlength' => true]) ?>
+
+
                 
             </div>
             <div class="card-footer">

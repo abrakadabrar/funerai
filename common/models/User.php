@@ -313,4 +313,12 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
+
+    /**
+     * @return string
+     */
+    public function getUsernameEmail()
+    {
+        return $this->username . " - " . $this->email;
+    }
 }

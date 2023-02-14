@@ -20,9 +20,13 @@ use yii\behaviors\TimestampBehavior;
  * @property float $price
  * @property string $asset_base_url
  * @property string $asset_path
+ * @property int|null $map_id
+ * @property int|null $owner_id
  *
  * @property Category $category
  * @property ProductLike[] $productLikes
+ * @property Map $map
+ * @property User $owner
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -59,7 +63,7 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id'], 'integer'],
+            [['category_id', 'map_id', 'owner_id'], 'integer'],
             [['title', 'description', 'price'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
@@ -67,6 +71,8 @@ class Product extends \yii\db\ActiveRecord
             [['asset_base_url', 'asset_path'], 'string', 'max' => 1024],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['asset'], 'safe'],
+            [['map_id'], 'exist', 'skipOnError' => true, 'targetClass' => Map::className(), 'targetAttribute' => ['map_id' => 'id']],
+            [['owner_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['owner_id' => 'id']],
         ];
     }
 
@@ -77,7 +83,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'category_id' => Yii::t('app', 'Category'),
             'sku' => Yii::t('app', 'Sku'),
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
@@ -87,6 +93,8 @@ class Product extends \yii\db\ActiveRecord
             'asset_base_url' => Yii::t('app', 'Asset Base Url'),
             'asset_path' => Yii::t('app', 'Asset Path'),
             'asset' => Yii::t('common', 'Asset'),
+            'map_id' => Yii::t('common', 'Map'),
+            'owner_id' => Yii::t('common', 'Owner'),
         ];
     }
 
@@ -108,6 +116,26 @@ class Product extends \yii\db\ActiveRecord
     public function getProductLikes()
     {
         return $this->hasMany(ProductLike::className(), ['product_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Map]].
+     *
+     * @return \yii\db\ActiveQuery|MapQuery
+     */
+    public function getMap()
+    {
+        return $this->hasOne(Map::className(), ['id' => 'map_id']);
+    }
+
+    /**
+     * Gets query for [[Owner]].
+     *
+     * @return \yii\db\ActiveQuery|UserQuery
+     */
+    public function getOwner()
+    {
+        return $this->hasOne(User::className(), ['id' => 'owner_id']);
     }
 
     /**
