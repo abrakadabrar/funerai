@@ -1,6 +1,7 @@
 <?php
 namespace api\modules\v1\controllers;
 
+use common\models\Map;
 use common\models\Product;
 use common\models\ProductLike;
 use common\models\ProductSale;
@@ -29,12 +30,11 @@ class ProductController extends \yii\rest\Controller {
                 HttpHeaderAuth::class,
                 QueryParamAuth::class
             ],
-            'except' => ['info', 'likes'],
+            'except' => ['info', 'likes', 'list-products', 'list-maps'],
         ];
 
         return $behaviors;
     }
-
 
     /**
      * @SWG\Post(path="/product/like/{product_id}",
@@ -83,9 +83,6 @@ class ProductController extends \yii\rest\Controller {
      * @SWG\Post(path="/product/likes/{product_id}",
      *     tags={"product"},
      *     summary="Show product likes count",
-     *     security={
-     *          {"Bearer": {}}
-     *     },
      *     @SWG\Response(
      *         response = 200,
      *         description = "Count of likes",
@@ -110,9 +107,6 @@ class ProductController extends \yii\rest\Controller {
      * @SWG\Post(path="/product/info/{product_id}",
      *     tags={"product"},
      *     summary="Show product info, is sold, url to buy, url to view, url to edit",
-     *     security={
-     *          {"Bearer": {}}
-     *     },
      *     @SWG\Response(
      *         response = 200,
      *         description = "Information",
@@ -195,5 +189,77 @@ class ProductController extends \yii\rest\Controller {
                 'message' => 'Failed to save product state' . var_export($product->getErrors(), true)
             ];
         }
+    }
+
+    /**
+     * @SWG\Post(path="/product/list-maps",
+     *     tags={"product"},
+     *     summary="List of all maps",
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "List of found maps",
+     *         @SWG\Schema(ref = "#/definitions/MapList")
+     *     ),
+     * )
+     */
+    public function actionListMaps() {
+        /** @var Map[] $maps */
+        $maps = Map::find()->all();
+
+        $mapsData = [];
+        foreach ($maps as $map) {
+            $mapsData[] = [
+                'id' => $map->id,
+                'name' => $map->name,
+                'descr' => $map->descr,
+            ];
+        }
+
+        return $mapsData;
+    }
+
+    /**
+     * @SWG\Post(path="/product/list-products/{map_id}",
+     *     tags={"product"},
+     *     summary="List of all products or for map_id",
+     *     @SWG\Response(
+     *         response = 200,
+     *         description = "List of found products",
+     *         @SWG\Schema(ref = "#/definitions/ProductList")
+     *     ),
+     *     @SWG\Parameter(
+     *          name="map_id",
+     *          in="path",
+     *          type="integer",
+     *          required=false
+     *     )
+     * )
+     */
+    public function actionListProducts($map_id = null) {
+        if ($map_id) {
+            /** @var Product[] $products */
+            $products = Product::find()->where(['map_id' => $map_id])->all();
+        } else {
+            $products = Product::find()->all();
+        }
+
+        $data = [];
+        foreach ($products as $product) {
+            $data[] = [
+                "id" => $product->id,
+                "category_id" => $product->category_id,
+                "map_id" => $product->map_id,
+                "owner_id" => $product->owner_id,
+                "title" => $product->title,
+                "description" => $product->description,
+                "price" => $product->price,
+                "asset_base_url" => $product->asset_base_url,
+                "asset_path" => $product->asset_path,
+            ];
+        }
+
+        return [
+            'products' => $data
+        ];
     }
 }
