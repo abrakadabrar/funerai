@@ -27,6 +27,7 @@ use yii\behaviors\TimestampBehavior;
  * @property ProductLike[] $productLikes
  * @property Map $map
  * @property User $owner
+ * @property ProductSale[] $productSales
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -136,6 +137,20 @@ class Product extends \yii\db\ActiveRecord
     public function getOwner()
     {
         return $this->hasOne(User::className(), ['id' => 'owner_id']);
+    }
+
+    /**
+     * Gets query for [[ProductSales]].
+     *
+     * @return \yii\db\ActiveQuery|ProductSaleQuery
+     */
+    public function getProductSales()
+    {
+        return $this->hasMany(ProductSale::className(), ['product_id' => 'id']);
+    }
+
+    public function getIsSold() {
+        return !empty($this->productSales);
     }
 
     /**

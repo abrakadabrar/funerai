@@ -77,6 +77,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->owner ? $model->owner->usernameEmail : '-';
                         },
                     ],
+                    [
+                        'attribute' => 'isSold',
+                        'value' => function ($model) {
+                            return $model->isSold ? 'Yes' : 'No';
+                        },
+                    ],
                     
                     ['class' => \common\widgets\ActionColumn::class],
                 ],
