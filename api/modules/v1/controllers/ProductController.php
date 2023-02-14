@@ -21,15 +21,16 @@ class ProductController extends \yii\rest\Controller {
     {
         $behaviors = parent::behaviors();
 
-        /*$behaviors['authenticator'] = [
+        $behaviors['authenticator'] = [
             'class' => CompositeAuth::class,
             'authMethods' => [
                 HttpBasicAuth::class,
                 HttpBearerAuth::class,
                 HttpHeaderAuth::class,
                 QueryParamAuth::class
-            ]
-        ];*/
+            ],
+            'except' => ['info', 'likes'],
+        ];
 
         return $behaviors;
     }
@@ -106,16 +107,16 @@ class ProductController extends \yii\rest\Controller {
     }
 
     /**
-     * @SWG\Post(path="/product/is-sold/{product_id}",
+     * @SWG\Post(path="/product/info/{product_id}",
      *     tags={"product"},
-     *     summary="Show product sold or not, sends buy URL",
+     *     summary="Show product info, is sold, url to buy, url to view, url to edit",
      *     security={
      *          {"Bearer": {}}
      *     },
      *     @SWG\Response(
      *         response = 200,
-     *         description = "Is sold and url",
-     *         @SWG\Schema(ref = "#/definitions/ProductSold")
+     *         description = "Information",
+     *         @SWG\Schema(ref = "#/definitions/ProductInfo")
      *     ),
      *     @SWG\Parameter(
      *          name="product_id",
@@ -125,12 +126,17 @@ class ProductController extends \yii\rest\Controller {
      *     )
      * )
      */
-    public function actionIsSold($product_id) {
-        $product = Product::find($product_id)->where(['id' => $product_id])->one();
+    public function actionInfo($product_id) {
+        $product = Product::find()->where(['id' => $product_id])->one();
         $isSold = !empty($product->owner_id) && $product->owner_id;
+
+        $isUserOwner = $product->owner_id === intval(Yii::$app->user->id);
+
         return [
             'isSold' => $isSold,
-            'buyUrl' => $isSold ? null : Url::toRoute(['product/buy', 'product_id' => $product_id])
+            'buyUrl' => $isSold ? null : "https://funera.com/product/buy/$product_id",
+            'viewUrl' => $isUserOwner ? "https://funera.com/product/view/$product_id" : null,
+            'editUrl' => $isUserOwner ? "https://funera.com/product/edit/$product_id" : null,
         ];
     }
 

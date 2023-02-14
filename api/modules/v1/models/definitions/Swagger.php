@@ -2,7 +2,7 @@
 //schemes={"http","https"},
 /**
  * @SWG\Swagger(
- *     schemes={"http"},
+ *     schemes={"https","http"},
  *     basePath="/",
  *     @SWG\Info(
  *         version="1.0.0",
