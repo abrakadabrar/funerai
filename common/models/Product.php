@@ -65,7 +65,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'map_id', 'owner_id'], 'integer'],
-            [['title', 'description', 'price'], 'required'],
+            [['title', 'price'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
             [['sku', 'title'], 'string', 'max' => 255],
