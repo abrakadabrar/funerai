@@ -236,6 +236,16 @@ a.navbar-brand {
     border-color: rgba(63, 63, 63, 0.8);
 }
 
+.btn.btn-default {
+    background: rgba(63, 63, 63, 0.8);
+    color: white;
+    border-color: rgba(63, 63, 63, 0.8);
+}
+.btn.btn-default:hover {
+    background: #88C6FF;
+    color: black;
+    border-color: #88C6FF;
+}
 
 .modal-header {
     display: block;
@@ -563,4 +573,8 @@ background: #88C6FF;
 
 .was-validated .form-control:valid, .form-control.is-valid {
     background-color: #202023!important;
+}
+
+hr {
+    border-top: 1px solid #ADB0C3;
 }

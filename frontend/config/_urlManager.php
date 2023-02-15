@@ -19,5 +19,9 @@ return [
         ['pattern' => 'sitemap.xml', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML]],
         ['pattern' => 'sitemap.txt', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_TXT]],
         ['pattern' => 'sitemap.xml.gz', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML, 'gzip' => true]],
+
+        ['pattern' => 'product/view/<id>', 'route' => 'product/view'],
+        ['pattern' => 'product/edit/<id>', 'route' => 'product/edit'],
+        ['pattern' => 'product/buy/<id>', 'route' => 'product/buy'],
     ]
 ];

@@ -1,0 +1,93 @@
+.product-image {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.product-modal .modal-header {
+    border-bottom: none;
+}
+
+.product-modal .modal-footer {
+    border-top: none;
+    justify-content: flex-start;
+}
+
+.btn.product-link {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.product-modal hr {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.product-modal h2 {
+    font-size: 2.6rem;
+}
+.product-modal h5 {
+    font-size: 1.06rem;
+    font-style: italic;
+}
+
+.redactor-editor, .redactor-box {
+    background: transparent!important;
+}
+
+.product-modal .upload-kit .upload-kit-input, .product-modal .upload-kit .upload-kit-item {
+    border: 1px solid #ADB0C3;
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    height: 210px;
+}
+
+.product-modal .upload-kit .upload-kit-item.image > img {
+    border-radius: 0;
+}
+
+.form-group.field-product-asset {
+    margin-bottom: 0;
+}
+
+
+#editProductModal .modal-body {
+    padding: 3rem;
+    padding-top: 0;
+}
+
+.field-product-description {
+    margin-top: 3rem;
+    margin-bottom: 0!important;
+}
+
+.product-modal .upload-kit .upload-kit-input .drag, .product-modal .upload-kit .upload-kit-input .add {
+    background: url(/img/download.png) no-repeat top center;
+    background-size: contain;
+    top: 40%;
+}
+
+.product-modal .fa-plus-circle:before {
+    content: "Upload photo";
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    font-weight: bold;
+}
+
+#editProductModal h2 {
+    font-size: 2rem;
+}
+#editProductModal .product-modal .modal-header {
+    padding: 3rem;
+    padding-bottom: 2rem;
+}
