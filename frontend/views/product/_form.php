@@ -52,20 +52,27 @@ echo $form->field($model, 'id')->input('hidden')->label(false);
         <div class="row">
             <div class="col-sm-6">
                 <?php
-                echo $form->field($model, 'date_one')->widget(DateTimePicker::classname(), [
+                if ($model->date_one) $model->date_one = date('Y-m-d', strtotime($model->date_one));
+                if ($model->date_two) $model->date_two = date('Y-m-d', strtotime($model->date_two));
+
+                echo $form->field($model, 'date_one')->widget(\kartik\widgets\DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter time ...'],
+                    'convertFormat' => true,
                     'pluginOptions' => [
-                        'autoclose' => true
+                        'autoclose' => true,
+                        'format' => 'yyyy-M-dd',
                     ]
                 ])->label(false);
                 ?>
             </div>
             <div class="col-sm-6">
                 <?php
-                echo $form->field($model, 'date_two')->widget(DateTimePicker::classname(), [
+                echo $form->field($model, 'date_two')->widget(\kartik\widgets\DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter time ...'],
+                    'convertFormat' => true,
                     'pluginOptions' => [
-                        'autoclose' => true
+                        'autoclose' => true,
+                        'format' => 'yyyy-M-dd',
                     ]
                 ])->label(false);
                 ?>

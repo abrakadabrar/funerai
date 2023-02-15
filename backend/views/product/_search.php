@@ -18,8 +18,8 @@ use yii\bootstrap4\ActiveForm;
     ]); ?>
 
     <?php echo $form->field($model, 'id') ?>
-    <?php echo $form->field($model, 'category_id') ?>
-    <?php echo $form->field($model, 'sku') ?>
+<!--    --><?php //echo $form->field($model, 'category_id') ?>
+<!--    --><?php //echo $form->field($model, 'sku') ?>
     <?php echo $form->field($model, 'title') ?>
     <?php echo $form->field($model, 'description') ?>
     <?php // echo $form->field($model, 'price') ?>

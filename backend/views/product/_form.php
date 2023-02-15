@@ -31,14 +31,14 @@ use yii\web\JsExpression;
                     'email'
                 ), ['prompt' => '']) ?>
 
-                <?php echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+                <?php /*echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
                     \common\models\Category::find()->all(),
                     'id',
                     'title'
-                ), ['prompt' => '']) ?>
+                ), ['prompt' => '']) */?>
 
 <!--                --><?php //echo $form->field($model, 'user_id')->textInput() ?>
-                <?php echo $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
+<!--                --><?php //echo $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
                 <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 <!--                --><?php //echo $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
@@ -73,17 +73,24 @@ use yii\web\JsExpression;
 
 
                 <?php
-                echo $form->field($model, 'date_one')->widget(DateTimePicker::classname(), [
+                if ($model->date_one) $model->date_one = date('Y-m-d', strtotime($model->date_one));
+                if ($model->date_two) $model->date_two = date('Y-m-d', strtotime($model->date_two));
+
+                echo $form->field($model, 'date_one')->widget(\kartik\widgets\DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter time ...'],
+                    'convertFormat' => true,
                     'pluginOptions' => [
-                        'autoclose' => true
+                        'autoclose' => true,
+                        'format' => 'yyyy-M-dd',
                     ]
                 ]);
 
-                echo $form->field($model, 'date_two')->widget(DateTimePicker::classname(), [
+                echo $form->field($model, 'date_two')->widget(\kartik\widgets\DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter time ...'],
+                    'convertFormat' => true,
                     'pluginOptions' => [
-                        'autoclose' => true
+                        'autoclose' => true,
+                        'format' => 'yyyy-M-dd',
                     ]
                 ]);
                 ?>

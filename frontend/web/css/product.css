@@ -92,11 +92,11 @@
     padding-bottom: 2rem;
 }
 
-.datetimepicker table {
+.datepicker table {
     background: white;
 }
 
-#editProductModal .input-group-text.kv-datetime-picker, #editProductModal .input-group-text.kv-datetime-remove {
+#editProductModal .input-group-text.kv-date-picker, #editProductModal .input-group-text.kv-date-remove {
     border-radius: 0!important;;
     color: white!important;;
     background: none!important;

@@ -43,13 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     'id',
 //                    'category_id',
-                    [
+                    /*[
                         'attribute' => 'category_id',
                         'filter' => ArrayHelper::map(Category::find()->all(), 'id', 'title'),
                         'value' =>  function ($model) {
                             return $model->category ? $model->category->title : '-';
                         },
-                    ],
+                    ],*/
 
 //                    'sku',
                     'title',
@@ -83,8 +83,20 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->isSold ? 'Yes' : 'No';
                         },
                     ],
-                     'date_one',
-                     'date_two',
+                    [
+                        'attribute' => 'date_one',
+                        'value' => function ($model) {
+                            return date('Y-m-d', strtotime($model->date_one));
+                        },
+                    ],
+                    [
+                        'attribute' => 'date_two',
+                        'value' => function ($model) {
+                            return date('Y-m-d', strtotime($model->date_two));
+                        },
+                    ],
+//                     'date_one',
+//                     'date_two',
                     ['class' => \common\widgets\ActionColumn::class],
                 ],
             ]); ?>
