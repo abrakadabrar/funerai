@@ -11,7 +11,7 @@ use yii\bootstrap4\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action' =>['user/sign-in/login'],
+    'action' =>['/user/sign-in/login'],
     'id' => 'login-form'
 ]); ?>
     <?php echo $form->errorSummary($model) ?>

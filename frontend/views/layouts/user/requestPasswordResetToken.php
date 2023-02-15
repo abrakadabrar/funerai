@@ -10,6 +10,9 @@ use yii\bootstrap4\ActiveForm;
 
 ?>
 
-<?php $form = ActiveForm::begin(['id' => 'password-reset']); ?>
+<?php $form = ActiveForm::begin([
+    'action' =>['/user/sign-in/request-password-reset'],
+    'id' => 'password-reset'
+]); ?>
 <?php echo $form->field($model, 'email')->input('email') ?>
 <?php ActiveForm::end(); ?>

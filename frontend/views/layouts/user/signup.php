@@ -10,7 +10,10 @@ use yii\bootstrap4\ActiveForm;
 
 ?>
 
-<?php $form = ActiveForm::begin(['id' => 'signup-form']); ?>
+<?php $form = ActiveForm::begin([
+    'action' =>['/user/sign-in/signup'],
+    'id' => 'signup-form'
+]); ?>
 <?php echo $form->errorSummary($model) ?>
 
 <?php echo $form->field($model, 'username')->textInput(['class' => ['overed-input form-control']])->label('Username', [
