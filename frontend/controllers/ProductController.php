@@ -51,6 +51,7 @@ class ProductController extends Controller
     }
 
     public function actionEdit($id) {
+
         $model = new Product();
 
         $product = Product::find()->where(['id' => $id])->one();
@@ -58,8 +59,10 @@ class ProductController extends Controller
             throw new NotFoundHttpException("Product is not found");
         }
 
-        $model->load(Yii::$app->request->post());
-        $model->save();
+        if (Yii::$app->user->isGuest || Yii::$app->user->id != $product->owner_id) {
+            return redirect(['view', 'id' => $model->id]);
+        }
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

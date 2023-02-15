@@ -32,8 +32,12 @@ $this->registerCssFile('/css/product.css');
                 <div class="product-description"><?=$model->description?></div>
             </div>
             <div class="modal-footer">
-                <a href="/product/buy/<?=$model->id?>" id="viewProduct-link-buy" type="button" class="btn btn-primary product-link">Buy</a>
+                <?php if (!Yii::$app->user->isGuest && !$model->owner_id) : ?>
+                <a href="//api.funerai.com/product/buy/<?=$model->id?>?access-token=<?=Yii::$app->user->identity->access_token?>" id="viewProduct-link-buy" type="button" class="btn btn-primary product-link">Buy</a>
+                <?php endif; ?>
+                <?php if (!Yii::$app->user->isGuest && $model->owner_id == Yii::$app->user->id) : ?>
                 <a href="/product/edit/<?=$model->id?>" id="viewProduct-link-edit" type="button" class="btn btn-default product-link">Edit</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
