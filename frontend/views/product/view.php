@@ -23,7 +23,11 @@ $this->registerCssFile('/css/product.css');
                         <img class="product-image" src="<?=$model->asset_base_url . "/" . $model->asset_path?>"/>
                     </div>
                     <div class="col-sm-8">
-                        <h5 class="product-date" id="viewProductModalLabel">9 March 1934 - 27 March 1968</h5>
+                        <h5 class="product-date" id="viewProductModalLabel">
+                            <?php if ($model->date_one && $model->date_two) : ?>
+                            <?=date("F jS, Y", strtotime($model->date_one))?> - <?=date("F jS, Y", strtotime($model->date_two))?>
+                            <?php endif; ?>
+                        </h5>
                         <h2 class="text-bold product-title" id="viewProductModalLabel"><?=$model->title?></h2>
                     </div>
                 </div>

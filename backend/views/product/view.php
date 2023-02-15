@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw'
                     ],
 //                    'user_id',
-                    'sku',
+//                    'sku',
                     'title',
                     'description:html',
                     'price',
@@ -57,6 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //                    'asset_base_url:url',
 //                    'asset_path',
+                     'date_one',
+                     'date_two',
                     
                 ],
             ]) ?>

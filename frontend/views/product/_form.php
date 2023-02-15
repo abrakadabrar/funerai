@@ -49,7 +49,28 @@ echo $form->field($model, 'id')->input('hidden')->label(false);
         )->label(false) ?>
     </div>
     <div class="col-sm-9">
-        <h5 class="product-date" id="viewProductModalLabel">9 March 1934 - 27 March 1968</h5>
+        <div class="row">
+            <div class="col-sm-6">
+                <?php
+                echo $form->field($model, 'date_one')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter time ...'],
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ])->label(false);
+                ?>
+            </div>
+            <div class="col-sm-6">
+                <?php
+                echo $form->field($model, 'date_two')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter time ...'],
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ])->label(false);
+                ?>
+            </div>
+        </div>
         <?php echo $form->field($model, 'title')->textInput(['class' => ['overed-input form-control']])->label('title', [
             'class' => ['over-label']
         ]) ?>

@@ -91,3 +91,13 @@
     padding: 3rem;
     padding-bottom: 2rem;
 }
+
+.datetimepicker table {
+    background: white;
+}
+
+#editProductModal .input-group-text.kv-datetime-picker, #editProductModal .input-group-text.kv-datetime-remove {
+    border-radius: 0!important;;
+    color: white!important;;
+    background: none!important;
+}

@@ -72,6 +72,21 @@ use yii\web\JsExpression;
 <!--                --><?php //echo $form->field($model, 'asset_path')->textInput(['maxlength' => true]) ?>
 
 
+                <?php
+                echo $form->field($model, 'date_one')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter time ...'],
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ]);
+
+                echo $form->field($model, 'date_two')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter time ...'],
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ]);
+                ?>
                 
             </div>
             <div class="card-footer">

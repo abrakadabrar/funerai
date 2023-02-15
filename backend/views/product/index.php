@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ],
 
-                    'sku',
+//                    'sku',
                     'title',
                     // 'description:ntext',
                     // 'created_at',
@@ -83,7 +83,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->isSold ? 'Yes' : 'No';
                         },
                     ],
-                    
+                     'date_one',
+                     'date_two',
                     ['class' => \common\widgets\ActionColumn::class],
                 ],
             ]); ?>

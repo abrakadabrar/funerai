@@ -27,6 +27,8 @@ use yii\bootstrap4\ActiveForm;
     <?php // echo $form->field($model, 'asset_path') ?>
     <?php // echo $form->field($model, 'map_id') ?>
     <?php // echo $form->field($model, 'owner_id') ?>
+    <?php // echo $form->field($model, 'date_one') ?>
+    <?php // echo $form->field($model, 'date_two') ?>
 
     <div class="form-group">
         <?php echo Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>

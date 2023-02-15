@@ -22,6 +22,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $asset_path
  * @property int|null $map_id
  * @property int|null $owner_id
+ * @property string|null $date_one
+ * @property string|null $date_two
  *
  * @property Category $category
  * @property ProductLike[] $productLikes
@@ -68,6 +70,7 @@ class Product extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
+            [['date_one', 'date_two'], 'safe'],
             [['sku', 'title'], 'string', 'max' => 255],
             [['asset_base_url', 'asset_path'], 'string', 'max' => 1024],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -96,6 +99,8 @@ class Product extends \yii\db\ActiveRecord
             'asset' => Yii::t('common', 'Asset'),
             'map_id' => Yii::t('common', 'Map'),
             'owner_id' => Yii::t('common', 'Owner'),
+            'date_one' => Yii::t('app', 'Date One'),
+            'date_two' => Yii::t('app', 'Date Two'),
         ];
     }
 
