@@ -13,7 +13,10 @@ use yii\web\JsExpression;
  */
 ?>
 
-<?php $form = ActiveForm::begin(['id' => 'edit-product-form']); ?>
+<?php $form = ActiveForm::begin(['id' => 'edit-product-form']);
+
+echo $form->field($model, 'id')->input('hidden')->label(false);
+?>
 
 <?php //echo $form->field($model, 'map_id')->dropDownList(\yii\helpers\ArrayHelper::map(
 //    \common\models\Map::find()->all(),
