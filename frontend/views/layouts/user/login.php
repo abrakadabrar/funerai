@@ -20,5 +20,5 @@ use yii\bootstrap4\ActiveForm;
         'class' => ['over-label']
 ]); ?>
 
-    <?php echo $form->field($model, 'password')->passwordInput()->label(false); ?>
+    <?php echo $form->field($model, 'password')->passwordInput(['placeholder' => "password"])->label(false); ?>
 <?php ActiveForm::end(); ?>

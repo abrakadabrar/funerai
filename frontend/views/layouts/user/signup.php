@@ -19,9 +19,9 @@ use yii\bootstrap4\ActiveForm;
 <?php echo $form->field($model, 'username')->textInput(['class' => ['overed-input form-control']])->label('Username', [
     'class' => ['over-label']
 ]); ?>
-<?php echo $form->field($model, 'email')->label(false) ?>
-<?php echo $form->field($model, 'password')->passwordInput()->label(false) ?>
-<?php echo $form->field($model, 'password_confirm')->passwordInput()->label(false) ?>
+<?php echo $form->field($model, 'email')->input('text', ['placeholder' => "email"])->label(false) ?>
+<?php echo $form->field($model, 'password')->passwordInput(['placeholder' => "password"])->label(false) ?>
+<?php echo $form->field($model, 'password_confirm')->passwordInput(['placeholder' => "password"])->label(false) ?>
 <?php echo $form->field($model, 'privacy_accept')->checkbox()
     ->label(
         "I agree with the <a class='text-sm text-bold white-link' href='#'>privacy policy</a>"
