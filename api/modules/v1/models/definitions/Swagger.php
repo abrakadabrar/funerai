@@ -7,7 +7,7 @@
  *     @SWG\Info(
  *         version="1.0.0",
  *         title="funnerAI.com Documentation",
- *         description="API description...",
+ *         description="JSON schema located by url - /site/json-schema",
  *         termsOfService="",
  *     ),
  *     @SWG\SecurityScheme(

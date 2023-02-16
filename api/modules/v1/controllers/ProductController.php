@@ -30,7 +30,7 @@ class ProductController extends \yii\rest\Controller {
                 HttpHeaderAuth::class,
                 QueryParamAuth::class
             ],
-            'except' => ['info', 'likes', 'list-products', 'list-maps'],
+            'except' => ['likes', 'list-products', 'list-maps'],
         ];
 
         return $behaviors;
@@ -107,6 +107,9 @@ class ProductController extends \yii\rest\Controller {
      * @SWG\Post(path="/product/info/{product_id}",
      *     tags={"product"},
      *     summary="Show product info, is sold, url to buy, url to view, url to edit",
+     *     security={
+     *          {"Bearer": {}}
+     *     },
      *     @SWG\Response(
      *         response = 200,
      *         description = "Information",
@@ -128,10 +131,17 @@ class ProductController extends \yii\rest\Controller {
 
         return [
             'isSold' => $isSold,
-            'buyUrl' => $isSold ? null : "https://funera.com/product/buy/$product_id",
-            'viewUrl' => $isUserOwner ? "https://funera.com/product/view/$product_id" : null,
-            'editUrl' => $isUserOwner ? "https://funera.com/product/edit/$product_id" : null,
+            'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product_id",
+            'viewUrl' => "https://funerai.com/product/view/$product_id",
+            'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product_id" : null,
         ];
+        /*
+        return [
+            'isSold' => $isSold,
+            'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product_id",
+            'viewUrl' => $isUserOwner ? "https://funerai.com/product/view/$product_id" : null,
+            'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product_id" : null,
+        ];*/
     }
 
     /**
@@ -247,7 +257,6 @@ class ProductController extends \yii\rest\Controller {
         foreach ($products as $product) {
             $data[] = [
                 "id" => $product->id,
-                "category_id" => $product->category_id,
                 "map_id" => $product->map_id,
                 "owner_id" => $product->owner_id,
                 "title" => $product->title,

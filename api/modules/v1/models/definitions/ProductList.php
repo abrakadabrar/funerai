@@ -8,7 +8,6 @@ namespace api\modules\v1\models\definitions;
  * @SWG\Property(property="products", type="array",
  *  @SWG\Items(
  *      @SWG\Property(property="id", type="integer"),
- *      @SWG\Property(property="category_id", type="integer"),
  *      @SWG\Property(property="map_id", type="integer"),
  *      @SWG\Property(property="owner_id", type="integer"),
  *      @SWG\Property(property="title", type="string"),
