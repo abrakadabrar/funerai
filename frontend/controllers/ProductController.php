@@ -41,6 +41,7 @@ class ProductController extends Controller
     }
 
     public function actionView($id) {
+        $this->layout = '_clear';
         $product = Product::find()->where(['id' => $id])->one();
         if (!$product) {
             throw new NotFoundHttpException("Product is not found");
@@ -51,6 +52,7 @@ class ProductController extends Controller
     }
 
     public function actionEdit($id) {
+//        $this->layout = '_clear';
         $model = Product::find()->where(['id' => $id])->one();
         if (!$model) {
             throw new NotFoundHttpException("Product is not found");

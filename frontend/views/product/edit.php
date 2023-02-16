@@ -14,7 +14,7 @@ $this->registerJsFile('/js/product.js', [
 ]);
 $this->registerCssFile('/css/product.css');
 ?>
-<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="viewProductModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg product-modal" role="document">
         <div class="modal-content">
             <div class="modal-header">
