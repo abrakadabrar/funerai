@@ -30,6 +30,7 @@
 
 .product-modal h2 {
     font-size: 2.6rem;
+    line-height: 1.6;
 }
 .product-modal h5 {
     font-size: 1.06rem;
@@ -45,7 +46,7 @@
     border-radius: 0;
     margin: 0;
     width: 100%;
-    height: 210px;
+    height: 195px;/*210*/
 }
 
 .product-modal .upload-kit .upload-kit-item.image > img {

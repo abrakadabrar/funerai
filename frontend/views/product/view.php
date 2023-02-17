@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::$app->name . " - " . $model->title;
+$this->title = Yii::$app->name . " - " . $model->getFullName();
 
 $this->registerJsFile('/js/product.js', [
     'depends' => \frontend\assets\FrontendAsset::class,
@@ -28,7 +28,8 @@ $this->registerCssFile('/css/product.css');
                             <?=date("F jS, Y", strtotime($model->date_one))?> - <?=date("F jS, Y", strtotime($model->date_two))?>
                             <?php endif; ?>
                         </h5>
-                        <h2 class="text-bold product-title" id="viewProductModalLabel"><?=$model->title?></h2>
+                        <h2 class="text-bold product-title" id="viewProductModalLabel"><?="$model->surname <br>$model->name <br>$model->patronymic"?></h2>
+                        <hr>
                     </div>
                 </div>
             </div>

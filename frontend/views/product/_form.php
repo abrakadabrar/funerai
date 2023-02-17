@@ -18,25 +18,6 @@ use yii\web\JsExpression;
 echo $form->field($model, 'id')->input('hidden')->label(false);
 ?>
 
-<?php //echo $form->field($model, 'map_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-//    \common\models\Map::find()->all(),
-//    'id',
-//    'name'
-//), ['prompt' => '']) ?>
-<!---->
-<?php //echo $form->field($model, 'owner_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-//    \common\models\User::find()->all(),
-//    'id',
-//    'email'
-//), ['prompt' => '']) ?>
-<!---->
-<?php //echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-//    \common\models\Category::find()->all(),
-//    'id',
-//    'title'
-//), ['prompt' => '']) ?>
-
-
 <div class="row">
     <div class="col-sm-3">
         <?php echo $form->field($model, 'asset')->widget(
@@ -78,9 +59,23 @@ echo $form->field($model, 'id')->input('hidden')->label(false);
                 ?>
             </div>
         </div>
-        <?php echo $form->field($model, 'title')->textInput(['class' => ['overed-input form-control']])->label('title', [
-            'class' => ['over-label']
-        ]) ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <?php echo $form->field($model, 'surname')->textInput(['class' => ['overed-input form-control']])->label('Surname', [
+                    'class' => ['over-label']
+                ]) ?>
+            </div>
+            <div class="col-sm-6">
+                <?php echo $form->field($model, 'name')->textInput(['class' => ['overed-input form-control']])->label('Name', [
+                    'class' => ['over-label']
+                ]) ?>
+            </div>
+            <div class="col-sm-6">
+                <?php echo $form->field($model, 'patronymic')->textInput(['class' => ['overed-input form-control']])->label('Patronymic', [
+                    'class' => ['over-label']
+                ]) ?>
+            </div>
+        </div>
     </div>
 </div>
 

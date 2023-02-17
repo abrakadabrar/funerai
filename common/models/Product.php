@@ -158,4 +158,8 @@ class Product extends \yii\db\ActiveRecord
     public function getDataArray() {
 
     }
+
+    public function getFullName() {
+        return "$this->surname $this->name $this->patronymic";
+    }
 }

@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::$app->name . " - " . $model->title;
+$this->title = Yii::$app->name . " - " . $model->getFullName();
 
 $this->registerJsFile('/js/product.js', [
     'depends' => \frontend\assets\FrontendAsset::class,
