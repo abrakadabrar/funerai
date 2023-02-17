@@ -103,6 +103,40 @@ class ProductController extends Controller
         return $this->redirect(['index']);
     }
 
+    private static function remakeDateFromCsv(string $date) {
+        return implode('-', array_reverse(explode('.', $date)));
+    }
+    public function actionImportCsv() {
+        Yii::$app->db->createCommand("SET foreign_key_checks = 0")->execute();
+        Product::deleteAll();
+        Yii::$app->db->createCommand("SET foreign_key_checks = 1")->execute();
+        ini_set('auto_detect_line_endings',true);
+        $handle = fopen(Yii::getAlias('@backend') . '/one_day_df_epitafia.csv','r');
+        $row = 0;
+
+        echo '<pre>';
+        while ( ($data = fgetcsv($handle) ) !== false ) {
+            if ($row++ == 0) continue;
+            //0,1,2,4,5
+            $product = new Product();
+            $product->name = $data[0];
+            $product->surname = $data[1];
+            $product->patronymic = $data[2];
+            $product->date_one = self::remakeDateFromCsv($data[4]);
+            $product->date_two = self::remakeDateFromCsv($data[5]);
+            var_dump($data);
+            echo "\n";
+            if (!$product->save()) {
+
+                var_dump($product->getErrorSummary(true));
+                echo "\n";
+            }
+        }
+        echo '</pre>';
+        ini_set('auto_detect_line_endings',false);
+        die;
+    }
+
     /**
      * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

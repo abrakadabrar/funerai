@@ -12,9 +12,9 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "product".
  *
  * @property int $id
- * @property int|null $category_id
- * @property string|null $sku
- * @property string $title
+ * @property string $name
+ * @property string $surname
+ * @property string|null $patronymic
  * @property string $description
  * @property string $updated_at
  * @property float $price
@@ -25,7 +25,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $date_one
  * @property string|null $date_two
  *
- * @property Category $category
  * @property ProductLike[] $productLikes
  * @property Map $map
  * @property User $owner
@@ -66,14 +65,13 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'map_id', 'owner_id'], 'integer'],
-            [['title'], 'required'],
+            [['map_id', 'owner_id'], 'integer'],
+            [['name'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
             [['date_one', 'date_two'], 'safe'],
-            [['sku', 'title'], 'string', 'max' => 255],
+            [['name', 'surname', 'patronymic'], 'string', 'max' => 2048],
             [['asset_base_url', 'asset_path'], 'string', 'max' => 1024],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['asset'], 'safe'],
             [['map_id'], 'exist', 'skipOnError' => true, 'targetClass' => Map::className(), 'targetAttribute' => ['map_id' => 'id']],
             [['owner_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['owner_id' => 'id']],
@@ -87,9 +85,9 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category_id' => Yii::t('app', 'Category'),
-            'sku' => Yii::t('app', 'Sku'),
-            'title' => Yii::t('app', 'Title'),
+            'name' => Yii::t('app', 'Name'),
+            'surname' => Yii::t('app', 'Surname'),
+            'patronymic' => Yii::t('app', 'Patronymic'),
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -102,16 +100,6 @@ class Product extends \yii\db\ActiveRecord
             'date_one' => Yii::t('app', 'Date One'),
             'date_two' => Yii::t('app', 'Date Two'),
         ];
-    }
-
-    /**
-     * Gets query for [[Category]].
-     *
-     * @return \yii\db\ActiveQuery|CategoryQuery
-     */
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
     /**
