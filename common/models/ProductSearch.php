@@ -19,7 +19,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'category_id', 'map_id', 'owner_id'], 'integer'],
-            [['sku', 'title', 'description', 'asset_base_url', 'asset_path', 'date_one', 'date_two'], 'safe'],
+            [['description', 'asset_base_url', 'asset_path', 'date_one', 'date_two'], 'safe'],
             [['price'], 'number'],
         ];
     }
@@ -54,7 +54,6 @@ class ProductSearch extends Product
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
             'price' => $this->price,
             'map_id' => $this->map_id,
             'owner_id' => $this->owner_id,
@@ -63,7 +62,6 @@ class ProductSearch extends Product
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'asset_base_url', $this->asset_base_url])
             ->andFilterWhere(['like', 'asset_path', $this->asset_path]);

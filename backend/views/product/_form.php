@@ -19,6 +19,10 @@ use yii\web\JsExpression;
             <div class="card-body">
                 <?php echo $form->errorSummary($model); ?>
 
+                <?php echo $form->field($model, 'surname')->textInput() ?>
+                <?php echo $form->field($model, 'name')->textInput() ?>
+                <?php echo $form->field($model, 'patronymic')->textInput() ?>
+
                 <?php echo $form->field($model, 'map_id')->dropDownList(\yii\helpers\ArrayHelper::map(
                     \common\models\Map::find()->all(),
                     'id',
@@ -31,16 +35,7 @@ use yii\web\JsExpression;
                     'email'
                 ), ['prompt' => '']) ?>
 
-                <?php /*echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-                    \common\models\Category::find()->all(),
-                    'id',
-                    'title'
-                ), ['prompt' => '']) */?>
-
 <!--                --><?php //echo $form->field($model, 'user_id')->textInput() ?>
-<!--                --><?php //echo $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
-                <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-<!--                --><?php //echo $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
                 <?php echo $form->field($model, 'description')->widget(
                     \yii\imperavi\Widget::class,
@@ -94,7 +89,6 @@ use yii\web\JsExpression;
                     ]
                 ]);
                 ?>
-                
             </div>
             <div class="card-footer">
                 <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

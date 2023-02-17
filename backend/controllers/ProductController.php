@@ -119,8 +119,8 @@ class ProductController extends Controller
             if ($row++ == 0) continue;
             //0,1,2,4,5
             $product = new Product();
-            $product->name = $data[0];
-            $product->surname = $data[1];
+            $product->name = $data[1];
+            $product->surname = $data[0];
             $product->patronymic = $data[2];
             $product->date_one = self::remakeDateFromCsv($data[4]);
             $product->date_two = self::remakeDateFromCsv($data[5]);

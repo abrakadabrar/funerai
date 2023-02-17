@@ -8,7 +8,6 @@ use yii\widgets\DetailView;
  * @var common\models\Product $model
  */
 
-$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Products'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -30,23 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     [                      // the owner name of the model
-                        'label' => 'Asset',
+                        'label' => 'Owner',
                         'value' => $model->owner_id ? $model->owner->email : '-',
                         'format' => 'raw'
                     ],
                     [                      // the owner name of the model
-                        'label' => 'Asset',
+                        'label' => 'Map',
                         'value' => $model->map_id ? $model->map->name : '-',
                         'format' => 'raw'
                     ],
-                    [                      // the owner name of the model
-                        'label' => 'Asset',
-                        'value' => $model->category_id ? $model->category->title : '-',
-                        'format' => 'raw'
-                    ],
 //                    'user_id',
-//                    'sku',
-                    'title',
                     'description:html',
                     'price',
                     [                      // the owner name of the model

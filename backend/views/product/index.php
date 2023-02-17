@@ -42,27 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     'id',
-//                    'category_id',
-                    /*[
-                        'attribute' => 'category_id',
-                        'filter' => ArrayHelper::map(Category::find()->all(), 'id', 'title'),
-                        'value' =>  function ($model) {
-                            return $model->category ? $model->category->title : '-';
-                        },
-                    ],*/
-
-//                    'sku',
-                    'title',
+                    'surname',
+                    'name',
+                    'patronymic',
                     // 'description:ntext',
                     // 'created_at',
                     // 'updated_at',
                     // 'price',
-                    // 'asset_base_url:url',
-                    // 'asset_path',
-
-                    // 'map_id',
-                    // 'owner_id',
-
                     [
                         'attribute' => 'map_id',
                         'filter' => ArrayHelper::map(Map::find()->all(), 'id', 'name'),
@@ -95,8 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return date('Y-m-d', strtotime($model->date_two));
                         },
                     ],
-//                     'date_one',
-//                     'date_two',
+
                     ['class' => \common\widgets\ActionColumn::class],
                 ],
             ]); ?>
