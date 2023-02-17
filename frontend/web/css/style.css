@@ -529,6 +529,7 @@ background: #88C6FF;
 }
 #roadmap2-big-wrapper {
     padding-top: 15px;
+    user-select: none;
 }
 .roadmap2-item {
     /*position: relative;*/

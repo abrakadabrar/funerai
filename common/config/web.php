@@ -18,7 +18,8 @@ $config = [
     ],
 ];
 
-if (YII_DEBUG) {
+//if (YII_DEBUG) {
+if ($_SERVER['REMOTE_ADDR'] === '213.59.188.32') {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => yii\debug\Module::class,

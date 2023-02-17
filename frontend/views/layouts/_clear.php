@@ -23,7 +23,7 @@ use yii\helpers\Html;
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css?t=<?=filemtime(\Yii::getAlias('@frontend/web/css/style.css'))?>" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
@@ -33,7 +33,7 @@ use yii\helpers\Html;
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-<script src="/js/app.js"></script>
+<script src="/js/app.js?t=<?=filemtime(\Yii::getAlias('@frontend/web/css/style.css'))?>"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
