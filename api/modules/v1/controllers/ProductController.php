@@ -12,6 +12,7 @@ use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\HttpHeaderAuth;
 use yii\filters\auth\QueryParamAuth;
 use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 
 class ProductController extends \yii\rest\Controller {
 
@@ -30,7 +31,7 @@ class ProductController extends \yii\rest\Controller {
                 HttpHeaderAuth::class,
                 QueryParamAuth::class
             ],
-            'except' => ['likes', 'list-products', 'list-maps'],
+            'except' => ['likes', 'list-maps'],
         ];
 
         return $behaviors;
@@ -125,23 +126,11 @@ class ProductController extends \yii\rest\Controller {
      */
     public function actionInfo($product_id) {
         $product = Product::find()->where(['id' => $product_id])->one();
-        $isSold = !empty($product->owner_id) && $product->owner_id;
+        if (!$product) {
+            throw new NotFoundHttpException("Product is not found");
+        }
 
-        $isUserOwner = $product->owner_id === intval(Yii::$app->user->id);
-
-        return [
-            'isSold' => $isSold,
-            'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product_id",
-            'viewUrl' => "https://funerai.com/product/view/$product_id",
-            'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product_id" : null,
-        ];
-        /*
-        return [
-            'isSold' => $isSold,
-            'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product_id",
-            'viewUrl' => $isUserOwner ? "https://funerai.com/product/view/$product_id" : null,
-            'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product_id" : null,
-        ];*/
+        return $this->getProductInfo($product);
     }
 
     /**
@@ -232,6 +221,9 @@ class ProductController extends \yii\rest\Controller {
      * @SWG\Post(path="/product/list-products/{map_id}",
      *     tags={"product"},
      *     summary="List of all products or for map_id",
+     *     security={
+     *          {"Bearer": {}}
+     *     },
      *     @SWG\Response(
      *         response = 200,
      *         description = "List of found products",
@@ -246,7 +238,7 @@ class ProductController extends \yii\rest\Controller {
      * )
      */
     public function actionListProducts($map_id = null) {
-        if ($map_id) {
+        if ($map_id && is_numeric($map_id)) {
             /** @var Product[] $products */
             $products = Product::find()->where(['map_id' => $map_id])->all();
         } else {
@@ -255,20 +247,26 @@ class ProductController extends \yii\rest\Controller {
 
         $data = [];
         foreach ($products as $product) {
-            $data[] = [
-                "id" => $product->id,
-                "map_id" => $product->map_id,
-                "owner_id" => $product->owner_id,
-                "title" => $product->title,
-                "description" => $product->description,
-                "price" => $product->price,
-                "asset_base_url" => $product->asset_base_url,
-                "asset_path" => $product->asset_path,
-            ];
+            $data[] = $this->getProductInfo($product);
         }
 
         return [
             'products' => $data
+        ];
+    }
+
+    private function getProductInfo(Product $product) {
+        $isSold = !empty($product->owner_id) && $product->owner_id;
+        $isUserOwner = $product->owner_id === intval(Yii::$app->user->id);
+
+        return [
+            'id' => $product->id,
+            'isSold' => $isSold,
+            'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product->id",
+            'viewUrl' => $isUserOwner ? "https://funerai.com/product/view/$product->id" : null,
+            'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product->id" : null,
+//            'user_id' => Yii::$app->user->id,
+//            'owner_id' => $product->owner_id,
         ];
     }
 }

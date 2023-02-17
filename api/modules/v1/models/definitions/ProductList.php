@@ -8,13 +8,10 @@ namespace api\modules\v1\models\definitions;
  * @SWG\Property(property="products", type="array",
  *  @SWG\Items(
  *      @SWG\Property(property="id", type="integer"),
- *      @SWG\Property(property="map_id", type="integer"),
- *      @SWG\Property(property="owner_id", type="integer"),
- *      @SWG\Property(property="title", type="string"),
- *      @SWG\Property(property="description", type="string"),
- *      @SWG\Property(property="price", type="string"),
- *      @SWG\Property(property="asset_base_url", type="string"),
- *      @SWG\Property(property="asset_path", type="string"),
+ *      @SWG\Property(property="isSold", type="boolean"),
+ *      @SWG\Property(property="buyUrl", type="string"),
+ *      @SWG\Property(property="viewUrl", type="string"),
+ *      @SWG\Property(property="editUrl", type="string"),
  *  ),
  * )
  */

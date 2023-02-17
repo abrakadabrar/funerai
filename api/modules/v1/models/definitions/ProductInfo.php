@@ -5,6 +5,7 @@ namespace api\modules\v1\models\definitions;
 /**
  * @SWG\Definition(definition="ProductInfo")
  *
+ * @SWG\Property(property="id", type="integer")
  * @SWG\Property(property="isSold", type="boolean")
  * @SWG\Property(property="buyUrl", type="string")
  * @SWG\Property(property="viewUrl", type="string")
