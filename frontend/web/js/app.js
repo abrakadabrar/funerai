@@ -32,12 +32,20 @@ jQuery(function ($) {
     });
 
     $(window).on('load', function (){
-        new Splide( '.splide' , {
+        /*new Splide( '.splide' , {
             //perPage: 1,//Math.floor($('#roadmap2-wrapper').width() / 280)
             //perMove: 1,
             wheel    : true,
             autoWidth: true,
             arrows: false,
-        }).mount();
+        }).mount();*/
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: "auto",
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
     });
 });
