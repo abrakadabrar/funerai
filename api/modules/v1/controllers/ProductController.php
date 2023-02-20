@@ -263,7 +263,7 @@ class ProductController extends \yii\rest\Controller {
             'id' => $product->id,
             'isSold' => $isSold,
             'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product->id",
-            'viewUrl' => $isUserOwner ? "https://funerai.com/product/view/$product->id" : null,
+            'viewUrl' => $isUserOwner ||  $product->owner_id === 1 ? "https://funerai.com/product/view/$product->id" : null,
             'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product->id" : null,
 //            'user_id' => Yii::$app->user->id,
 //            'owner_id' => $product->owner_id,
