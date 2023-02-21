@@ -19,18 +19,30 @@ $this->registerCssFile('/css/product.css');
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <img class="product-image" src="<?=$model->asset_base_url . "/" . $model->asset_path?>"/>
-                    </div>
-                    <div class="col-sm-8">
-                        <h5 class="product-date" id="viewProductModalLabel">
-                            <?php if ($model->date_one && $model->date_two) : ?>
-                            <?=date("F jS, Y", strtotime($model->date_one))?> - <?=date("F jS, Y", strtotime($model->date_two))?>
-                            <?php endif; ?>
-                        </h5>
-                        <h2 class="text-bold product-title" id="viewProductModalLabel"><?="$model->surname <br>$model->name <br>$model->patronymic"?></h2>
-                        <hr>
-                    </div>
+                    <?php if ($model->asset_path) : ?>
+                        <div class="col-sm-4">
+                            <img class="product-image" src="<?=$model->asset_base_url . "/" . $model->asset_path?>"/>
+                        </div>
+                        <div class="col-sm-8">
+                            <h5 class="product-date" id="viewProductModalLabel">
+                                <?php if ($model->date_one && $model->date_two) : ?>
+                                    <?=date("d.m.Y", strtotime($model->date_one))?> - <?=date("d.m.Y", strtotime($model->date_two))?>
+                                <?php endif; ?>
+                            </h5>
+                            <h2 class="text-bold product-title" id="viewProductModalLabel"><?="$model->surname <br>$model->name <br>$model->patronymic"?></h2>
+                            <hr>
+                        </div>
+                    <?php else : ?>
+                        <div class="col-sm-12">
+                            <h5 class="product-date" id="viewProductModalLabel">
+                                <?php if ($model->date_one && $model->date_two) : ?>
+                                    <?=date("d.m.Y", strtotime($model->date_one))?> - <?=date("d.m.Y", strtotime($model->date_two))?>
+                                <?php endif; ?>
+                            </h5>
+                            <h2 class="text-bold product-title" id="viewProductModalLabel"><?="$model->surname <br>$model->name <br>$model->patronymic"?></h2>
+                            <hr>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="modal-body">

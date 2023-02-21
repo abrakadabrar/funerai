@@ -55,11 +55,11 @@ class ProductController extends Controller
 //        $this->layout = '_clear';
         $model = Product::find()->where(['id' => $id])->one();
         if (!$model) {
-            throw new NotFoundHttpException("Product is not found $id - ");
+            throw new NotFoundHttpException("Product is not found $id");
         }
 
         if (Yii::$app->user->isGuest || Yii::$app->user->id !== $model->owner_id) {
-            return redirect(['view', 'id' => $model->id]);
+            throw new UnauthorizedHttpException("You are not have rights to edit");
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

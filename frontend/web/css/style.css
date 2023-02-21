@@ -603,3 +603,24 @@ hr {
         font-size: 18px;
     }
 }
+
+#viewProductModal {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+#viewProductModal .modal-dialog {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#viewProductModal .modal-content {
+    height: 100%;
+}
