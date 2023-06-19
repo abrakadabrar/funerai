@@ -243,7 +243,7 @@ class ProductController extends \yii\rest\Controller {
             $products = Product::find()->where(['map_id' => $map_id])->all();
         } else {
             $products = Product::find()->all();
-        }фыв
+        }
 
         $data = [];
         foreach ($products as $product) {
