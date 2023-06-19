@@ -243,7 +243,7 @@ class ProductController extends \yii\rest\Controller {
             $products = Product::find()->where(['map_id' => $map_id])->all();
         } else {
             $products = Product::find()->all();
-        }
+        }фыв
 
         $data = [];
         foreach ($products as $product) {
@@ -265,6 +265,16 @@ class ProductController extends \yii\rest\Controller {
             'buyUrl' => $isSold ? null : "https://funerai.com/product/buy/$product->id",
             'viewUrl' => $isUserOwner ||  $product->owner_id === 1 ? "https://funerai.com/product/view/$product->id" : null,
             'editUrl' => $isUserOwner ? "https://funerai.com/product/edit/$product->id" : null,
+
+
+//            'name' => $product->name,
+//            'surname' => $product->surname,
+//            'patronymic' => $product->patronymic,
+
+            'full_name' => $product->getFullName(),
+            'date_one' => $product->date_one,
+            'date_two' => $product->date_two,
+            
 //            'user_id' => Yii::$app->user->id,
 //            'owner_id' => $product->owner_id,
         ];
